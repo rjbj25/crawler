@@ -10,3 +10,4 @@ Ejecución
 =========
 1. Ejecutar el script
     python craw.py
+2. El resultado se guardará en el archivo export_all.csv
