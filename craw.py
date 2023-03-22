@@ -8,6 +8,9 @@ from tqdm import tqdm
 # Se capturan los datos del archivo export_all.csv en un dataframe,
 # eliminando los duplicados directamente en el dataframe
 
+#df = pd.read_csv('export_all.csv')
+#visited = set(df['URL'].tolist())
+
 visited = set()
 
 def get_all_pages(pages, url, domain, visited):
@@ -43,7 +46,7 @@ def get_all_pages(pages, url, domain, visited):
             page = f'https://{page}'
         if domain not in page or page in visited or page.endswith('.jpg'):
             continue
-        print(f'Inx {len(visited)} - Scaning: {page}')
+        #print(f'Inx {len(visited)} - Scaning: {page}')
         df = pd.DataFrame([page], columns=['URL'])
         # Se escribe el dataframe en un archivo csv añadiendo los datos al final del archivo
         df.to_csv('export_all.csv', index=False, mode='a', header=False)
@@ -58,8 +61,8 @@ def get_all_pages(pages, url, domain, visited):
 
 def main():
     # the URL of the website to crawl
+    url = 'https://www.idbinvest.org/es/proyectos?language=es'
     domain = 'www.idbinvest.org'
-    url = f'https://{domain}'
     pages = []
     # get all the URLs on the website
     pages = get_all_pages(pages, url, domain, visited)
